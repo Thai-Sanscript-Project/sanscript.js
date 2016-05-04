@@ -257,6 +257,13 @@
             virama: [''],
             consonants: 'k K g G f c C j J F t T d D N w W x X n p P b B m y r l v S R s h  kR jF'.split(' '),
             symbols: "0 1 2 3 4 5 6 7 8 9 oM ' | ||".split(' ')
+        },
+        thai: {
+            vowels: '- า ิ ี ุ ู ฤ ฤๅ ฦ ฦๅ  เ ไ  โ เ-า'.split(' '),
+            other_marks: ['ํ', 'ะ', 'ัํ'],
+            virama: ['ฺ'],
+            consonants: 'ก ข ค ฆ ง จ ฉ ช ฌ ญ ฏ ฐ ฑ ฒ ณ ต ถ ท ธ น ป ผ พ ภ ม ย ร ล ว ศ ษ ส ห ฬ กษ ชญ'.split(' '),
+            symbols: "๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙ โอํ ' ฯ ๚".split(' ')
         }
     },
     // Set of names of schemes
@@ -687,6 +694,6 @@
      * @param options  scheme options
      */
     Sanscript.makeMap = function (from, to, options) {
-       return makeMap(from, to, options);
+        return makeMap(from, to, options);
     };
 }(window.Sanscript = window.Sanscript || {}));
