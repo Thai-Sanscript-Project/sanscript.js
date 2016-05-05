@@ -24,11 +24,9 @@ var romanSymbol = "0 1 2 3 4 5 6 7 8 9 ' । ॥".split(' ');
 function thaisanscript(txt) {
     var lineSplit = txt.split(/\r\n|\r|\n/);
     var result = new Array();
-    console.log(lineSplit);
     for (var i = 0; i < lineSplit.length; i++) {
-        result.push(thaiToIAST(lineSplit[i]));
+        result.push(thaiToIAST(lineSplit[i]).trim());
     }
-    console.log(result);
     return result.join("\n");
 }
 function thaiToIAST(txt) {
@@ -81,7 +79,7 @@ function swapFrontVowel(txt) {
             }
         }
     }
-    return charList.join("");
+    return  charList.join("");
 }
 function convertFrontVowel(txt) {
     return txt.replaceArray(frontVowelThai, frontVowelRoman);
@@ -122,7 +120,7 @@ function convertConsonantWithoutA(charList, i) {
 }
 
 function convertConsonantWithA(charList, i) {
-    if (consonantThai.contains(charList[i])) {
+    if (contains(consonantThai,charList[i])) {
         var result = charList[i].replaceArray(consonantThai, consonantRoman);
         charList[i] = result + 'a';
     }
@@ -132,10 +130,10 @@ function convertConsonantWithA(charList, i) {
 
 //-----------------------------------------------------------------------------
 function isConsonantWithVowel(charList, i) {
-    return  consonantThai.contains(charList[i]) && vowelBackconsonantRoman.contains(charList[i + 1]);
+    return  contains(consonantThai,charList[i]) && contains(vowelBackconsonantRoman ,charList[i + 1]);
 }
 function isMoveFrontVowel(charList, i) {
-    return isFrontVowel(charList[i]) && consonantThai.contains(charList[i + 1]);
+    return isFrontVowel(charList[i]) && contains(consonantThai,charList[i + 1]);
 }
 function isFrontVowel(char) {
     return char === 'โ' || char === 'เ' || char === 'ไ';
@@ -158,15 +156,16 @@ String.prototype.replaceArray = function (find, replace) {
     }
     return replaceString;
 };
-Array.prototype.contains = function (obj) {
-    var i = this.length;
+function contains(a, obj) {
+    var i = a.length;
     while (i--) {
-        if (this[i] === obj) {
-            return true;
-        }
+        
+       if (a[i] === obj) {
+           return true;
+       }
     }
     return false;
-};
+}
 
 
 
